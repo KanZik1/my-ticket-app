@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import FilmList from './Components/TicketPage/FilmList';
+import FilmDetails from './Components/TicketPage/FilmDetails';
 
 function App() {
+  const [selectedFilm, setSelectedFilm] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="min-h-screen bg-gray-900 text-white">
+      <div className="container mx-auto p-4">
+        <h1 className="text-4xl font-bold mb-4 text-center">Movie Ticket Booking</h1>
+        {selectedFilm ? (
+          <FilmDetails film={selectedFilm} onBack={() => setSelectedFilm(null)} />
+        ) : (
+          <FilmList onFilmSelect={setSelectedFilm} />
+        )}
+      </div>
     </div>
   );
 }
